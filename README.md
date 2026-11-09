@@ -9,6 +9,18 @@ The goal of this project is to build and containerize a simple
 IT asset management application while gaining practical
 experience with REST APIs, Docker and Linux administration.
 
+## Development Environment
+
+The project is developed and tested in an isolated virtual
+machine running Ubuntu Server 26.04.1 LTS on Oracle VirtualBox.
+
+This environment is separate from the existing Debian home
+server. All development and Docker-related experiments are
+performed inside the Ubuntu virtual machine.
+
+VirtualBox is used only as a development environment and is
+not a runtime requirement for the application.
+
 ## Planned Features
 
 - Create IT asset records
