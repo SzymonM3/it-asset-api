@@ -41,3 +41,41 @@ def init_db():
 
     finally:
         connection.close()
+
+
+def create_asset(asset_data: dict):
+    connection = get_connection()
+
+    try:
+        cursor = connection.execute("""
+            INSERT INTO assets (
+                name,
+                category,
+                manufacturer,
+                model,
+                serial_number,
+                assigned_to,
+                status
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (
+            asset_data["name"],
+            asset_data["category"],
+            asset_data["manufacturer"],
+            asset_data["model"],
+            asset_data["serial_number"],
+            asset_data["assigned_to"],
+            asset_data["status"],
+        ))
+
+        connection.commit()
+
+        created_asset = connection.execute(
+            "SELECT * FROM assets WHERE id = ?",
+            (cursor.lastrowid,)
+        ).fetchone()
+
+        return dict(created_asset)
+
+    finally:
+        connection.close()
